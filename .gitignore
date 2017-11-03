@@ -223,3 +223,5 @@ venv.bak/
 .mypy_cache/
 
 # End of https://www.gitignore.io/api/python,eclipse,pycharm+all
+
+cbf-rest-api.adoc
