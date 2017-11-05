@@ -21,7 +21,7 @@ class Competition(object):
 
         # season
         self.season_id = kwargs.get("sid")
-        self.season_name = kwargs.get()
+        self.season_name = kwargs.get("sname")
 
         # is this women competition
         self.is_woman = kwargs.get("female") == '1'
@@ -89,7 +89,7 @@ class Team(object):
             self.phones.append(kwargs.get("phone_2"))
 
         self.category_id = kwargs.get("IDcategory")
-        self.category_name = kwargs("catname")
+        self.category_name = kwargs.get("catname")
         self.club_id = kwargs.get("IDclub")
         self.club_name = kwargs.get("clubname")
 
@@ -113,7 +113,7 @@ class Game(object):
 
         if date != None and time != None:
             time_string = "{} {}".format(date, time)
-            self.date_time = strptime(time_string, "%Y-%m-%d %H-%M-%S")
+            self.date_time = strptime(time_string, "%Y-%m-%d %H:%M:%S")
 
         self.score_home = kwargs.get("score_home")
         self.score_guest = kwargs.get("score_guest")
