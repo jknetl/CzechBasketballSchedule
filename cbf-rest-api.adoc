@@ -1,0 +1,53 @@
+== Rest API
+http://www.cbf.cz/xml/api/divs.php?season=2017&female=1&area=0&json=1
+
+General Parameters:
+
+json=1/0
+area=0 (other valid values??? -> maybe regional leagues)
+season=2017
+
+
+
+1. list categories (divisons = competitions): http://www.cbf.cz/xml/api/divs.php
+    * http://www.cbf.cz/xml/api/divs.php?season=2017&female=0&area=0&json=1
+    * parameters
+        * female=1/0
+    * important data (competition ID "compid")
+2. get phases of a competition: http://www.cbf.cz/xml/api/phases.php
+    * e.g. http://www.cbf.cz/xml/api/phases.php?json=1&competition=2097
+    * returns list of phases
+    * parameters
+        * competition=COMPID
+    * important data: phase ID (ID)
+3. get table of a phase: http://www.cbf.cz/xml/api/table.php
+    * e.g. http://www.cbf.cz/xml/api/table.php?json=1&phase=4451
+    * parameters:
+        * phase=PHASE_ID
+    * result: tabular data
+4. get games of a phase:  http://www.cbf.cz/xml/api/games.php
+    * e.g.  http://www.cbf.cz/xml/api/games.php?json=1&phase=4451
+    * parameters:
+        * phase=PHASE_ID
+    * result: list of games
+        * game id
+5. get info about a game:http://www.cbf.cz/xml/api/game.php
+    * http://www.cbf.cz/xml/api/game.php?json=1&game=273093
+    * result: information about games and statistics
+
+6. get info about a team: http://www.cbf.cz/xml/api/team.php
+    * e.g. http://www.cbf.cz/xml/api/team.php?json=1&id=7046&competition=2060
+    * parameters
+        * id=TEAM_ID
+        * competition=COMPETITION_ID
+    * result:
+        * info about a team and its matches (probably including statistics)
+7. get info about players: http://www.cbf.cz/xml/api/teamplayers.php
+    * e.g. http://www.cbf.cz/xml/api/teamplayers.php?json=1&id=7046&competition=2060
+    * parameters
+        * id=TEAM_ID
+        * competition=COMPETITION_ID
+    * result:
+        * info about players and their statistics
+
+
