@@ -1,4 +1,7 @@
-from time import strptime
+from datetime import datetime
+import pytz
+
+TIMEZONE = pytz.timezone("Europe/Prague")
 
 
 class Competition(object):
@@ -63,6 +66,9 @@ class Address(object):
         self.city = city
         self.zipcode = zipcode
 
+    def __str__(self):
+        return "{}, {} {}".format(self.street, self.city, self.zipcode)
+
 
 class Arena(Address):
     def __init__(self, arena, street, city, zipcode, lat, lon):
@@ -70,6 +76,9 @@ class Arena(Address):
         self.arena = arena
         self.lat = lat
         self.lon = lon
+
+    def __str__(self):
+        return "{}, {}, {} {}".format(self.arena, self.street, self.city, self.zipcode)
 
 
 class Team(object):
@@ -113,7 +122,8 @@ class Game(object):
 
         if date != None and time != None:
             time_string = "{} {}".format(date, time)
-            self.date_time = strptime(time_string, "%Y-%m-%d %H:%M:%S")
+            if time_string != '0000-00-00 00:00:00':
+                self.date_time = TIMEZONE.localize(datetime.strptime(time_string, "%Y-%m-%d %H:%M:%S"))
 
         self.score_home = kwargs.get("score_home")
         self.score_guest = kwargs.get("score_guest")
@@ -123,10 +133,12 @@ class Game(object):
         self.ct4 = kwargs.get("ct4") == "1"
         self.tvcom_url = kwargs.get("videoIFrame")
 
-        self.team_home = kwargs.get("taidteam")
+        self.team_home_id = kwargs.get("taidteam")
+        self.team_home_name = kwargs.get("taname")
         self.team_home_group_by = kwargs.get("tagroupby")
 
-        self.team_guest = kwargs.get("tbidteam")
+        self.team_guest_id = kwargs.get("tbidteam")
+        self.team_guest_name = kwargs.get("tbname")
         self.team_guest_group_by = kwargs.get("tbgroupby")
 
         # json contains also names of the teams, but these can be fetched from teams
