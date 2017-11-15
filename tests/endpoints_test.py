@@ -29,7 +29,7 @@ class EndpointsTest(unittest.TestCase):
         #test_games
         nymburk_team = nymburk_teams[0]
         games = self.dao.list_games(basic_phase)
-        nymburk_games = list(filter(lambda game: game.team_home == nymburk_team.id, games))
+        nymburk_games = list(filter(lambda game: game.team_home_id == nymburk_team.id, games))
         self.assertTrue(len(nymburk_games) > 0)
 
 
