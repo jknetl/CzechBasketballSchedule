@@ -223,3 +223,6 @@ venv.bak/
 .mypy_cache/
 
 # End of https://www.gitignore.io/api/python,eclipse,pycharm+all
+
+playground/
+client_secret.json
